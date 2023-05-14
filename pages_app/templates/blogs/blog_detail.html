@@ -1,16 +1,15 @@
 {% extends "blogs_base/base.html" %}
 
 {% block content %}
-<div class="container">
     <div class="row">
         <div class="col-md-12">
             <h2 class="display-4">{{ blog.title }}</h2>
             <p class="lead">{{ blog.subtitle }}</p>
             <hr>
-            <p>{{ blog.body|linebreaksbr }}</p>
+            <p class="break-word">{{ blog.body|linebreaksbr }}</p>
             {% if blog.image %}
             <div class="text-center">
-                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid rounded" style="max-width: 100%; height: auto;">
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid rounded img-blog">
             </div>
             {% endif %}
             <p><strong>Autor:</strong> {{ blog.author }}</p>
@@ -28,5 +27,7 @@
             {% endif %}
         </div>
     </div>
-</div>
 {% endblock %}
+
+
+
