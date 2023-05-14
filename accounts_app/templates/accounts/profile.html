@@ -24,13 +24,6 @@
 
         <div class="form-group">
 
-            {{ form.webpage }}
-            <label class="form-label" for="{{ form.webpage.id_for_label }}">Webpage:</label>
-            <span class="form-line"></span>
-        </div>
-
-        <div class="form-group">
-
             {{ form.email }}
             <label class="form-label" for="{{ form.email.id_for_label }}">Email:</label>
             <span class="form-line"></span>
@@ -57,7 +50,7 @@
     </div>
 
     <button class="form-submit" type="submit">Guardar</button>
-    <a href="{% url 'movies-page' %}" class="form-cancel">Volver</a>
+    <a href="{% url 'blog-page' %}" class="form-cancel">Volver</a>
 </form>
 
 {% endblock %}

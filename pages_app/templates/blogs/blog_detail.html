@@ -1,0 +1,14 @@
+{% extends "blogs_base/base.html" %}
+
+{% block content %}
+  <h2>{{ blog.title }}</h2>
+  <p>{{ blog.subtitle }}</p>
+  <p>{{ blog.body }}</p>
+  <p>Autor: {{ blog.author }}</p>
+  <p>Fecha: {{ blog.date }}</p>
+  <a class="btn btn-warning" href="{% url 'blog-update' blog.pk %}">Editar blog</a>
+  <a class="btn btn-danger" href="{% url 'blog-delete' blog.pk %}">Eliminar blog</a>
+  {% if blog.image %}
+    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+  {% endif %}
+{% endblock %}

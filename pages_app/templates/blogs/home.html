@@ -1,30 +1,33 @@
-{% extends "movies_base/base.html" %}
+{% extends "blogs_base/base.html" %}
 {% block content %}
-<h2>Listado de películas</h2>
-{% if movies %}
+<h2>Listado de blogs</h2>
+{% if blogs %}
 <table class="table">
-	<thead>
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">Título</th>
-			<th scope="col">Fecha de estreno</th>
-			<th scope="col">Opciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for movie in movies %}
-
-		<tr>
-			<th scope="row">{{ movie.id }}</th>
-			<td>{{ movie.title }}</td>
-			<td>{{ movie.release_date }}</td>
-			<td><a class="btn btn-sm btn-info" href="{% url 'movie-detail' movie.pk %}">ver</a></td>
-		</tr>
-		{% endfor %}
-	</tbody>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Subtítulo</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Fecha de publicación</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for blog in blogs %}
+        <tr>
+            <th scope="row">{{ blog.id }}</th>
+            <td>{{ blog.title }}</td>
+            <td>{{ blog.subtitle }}</td>
+            <td>{{ blog.author.username }}</td>
+            <td>{{ blog.date }}</td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'blog-detail' blog.pk %}">ver</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% else %}
-<p>No hay películas disponibles</p>
+<p>No hay blogs disponibles</p>
 {% endif %}
-<a href="{% url 'movie-create' %}" class="btn btn-success">Agregar película</a>
+<a href="{% url 'blog-create' %}" class="btn btn-success">Agregar blog</a>
 {% endblock %}

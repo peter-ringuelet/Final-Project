@@ -1,7 +1,7 @@
-{% extends "movies_base/base.html" %}
+{% extends "blogs_base/base.html" %}
 
 {% block content %}
-  <h2>Editar película</h2>
+  <h2>Editar blog</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

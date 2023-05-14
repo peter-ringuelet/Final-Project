@@ -44,4 +44,4 @@ def blog_edit(request, pk):
 def blog_delete(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
     blog.delete()
-    return redirect('blog_list')
+    return redirect('blog-page')

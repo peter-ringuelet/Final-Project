@@ -10,7 +10,7 @@ from .forms import CustomUserCreationForm, CustomUserEditForm, CustomAuthenticat
 TEMPLATES = {  # Utilizamos una constante para mantener en un solo lugar los valores de los templates
     'login': 'accounts/login.html',
     'register': 'accounts/register.html',
-    'profile': 'acounts/profile.html',
+    'profile': 'accounts/profile.html',
 }
 # Create your views here.
 
@@ -101,14 +101,14 @@ def profile(request: HttpRequest) -> HttpResponse:
     current_user.first_name = new_user_data['first_name']
     current_user.last_name = new_user_data['last_name']
     current_user.description = new_user_data['description']
-    current_user.webpage = new_user_data['webpage']
     current_user.email = new_user_data['email']
 
     current_user.save()
 
     if new_user_data['password1']:
-        current_user.password1 = new_user_data['password1']
-        current_user.password2 = new_user_data['password2']
+        current_user.set_password(new_user_data['password1'])
         current_user.save()
+
+
 
     return render(request, TEMPLATES['profile'], {'form': form, 'success': f'Cambios guardados correctamente'})
