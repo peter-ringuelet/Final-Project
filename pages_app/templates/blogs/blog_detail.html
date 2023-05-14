@@ -1,14 +1,32 @@
 {% extends "blogs_base/base.html" %}
 
 {% block content %}
-  <h2>{{ blog.title }}</h2>
-  <p>{{ blog.subtitle }}</p>
-  <p>{{ blog.body }}</p>
-  <p>Autor: {{ blog.author }}</p>
-  <p>Fecha: {{ blog.date }}</p>
-  <a class="btn btn-warning" href="{% url 'blog-update' blog.pk %}">Editar blog</a>
-  <a class="btn btn-danger" href="{% url 'blog-delete' blog.pk %}">Eliminar blog</a>
-  {% if blog.image %}
-    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
-  {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="display-4">{{ blog.title }}</h2>
+            <p class="lead">{{ blog.subtitle }}</p>
+            <hr>
+            <p>{{ blog.body|linebreaksbr }}</p>
+            {% if blog.image %}
+            <div class="text-center">
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid rounded" style="max-width: 100%; height: auto;">
+            </div>
+            {% endif %}
+            <p><strong>Autor:</strong> {{ blog.author }}</p>
+            <p><strong>Fecha:</strong> {{ blog.date }}</p>
+             {% if user.is_authenticated %}
+            <div class="mb-3">
+                <a class="btn btn-warning" href="{% url 'blog-update' blog.pk %}">Editar blog</a>
+                <a class="btn btn-danger" href="{% url 'blog-delete' blog.pk %}">Eliminar blog</a>
+                <a class="btn btn-secondary" href="{% url 'blog-page' %}">Volver a lista de blogs</a>
+            </div>
+            {% else %}
+            <div class="mb-3">
+                <a class="btn btn-secondary" href="{% url 'blog-page' %}">Volver a lista de blogs</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

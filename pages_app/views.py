@@ -5,12 +5,12 @@ from .forms import BlogForm
 
 from django.contrib.auth.decorators import login_required
 
-@login_required
+
 def blog_list(request):
     blogs = Blog.objects.all()
     return render(request, 'blogs/home.html', {'blogs': blogs})
 
-@login_required
+
 def blog_detail(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
     return render(request, 'blogs/blog_detail.html', {'blog': blog})

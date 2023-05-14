@@ -44,7 +44,7 @@ def login_request(request: HttpRequest) -> HttpResponse:
     # Utilizando "error first" el código nos queda con menos identaciones y se hace mucho más fácil de leer
 
     # Utilizamos redirect en vez de render para redirigirnos a otra página (cambia la URL)
-    return redirect('home-page')
+    return redirect('blog-page')
 
 
 def register_request(request: HttpRequest) -> HttpResponse:

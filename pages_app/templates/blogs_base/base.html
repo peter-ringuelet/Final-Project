@@ -13,9 +13,79 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <title>AI Blogs</title>
+    <style>
+          body {
+              background-color: #e3fffc;
+              font-family: Arial, sans-serif;
+          }
+
+          .navbar {
+              background-color: #13547a;
+          }
+
+          .navbar-brand {
+              font-weight: bold;
+              color: #ffffff;
+          }
+
+          .nav-link {
+              color: #ffffff;
+          }
+
+          .nav-link:hover {
+              color: #c0e0ec;
+          }
+
+          .search-form {
+              margin-right: 1rem;
+          }
+
+          .btn-login {
+              background-color: #6c757d;
+              color: #fff;
+              border: none;
+          }
+
+          .btn-login:hover {
+              background-color: #5a6268;
+              color: #fff;
+          }
+
+          .btn-register {
+              background-color: #17a2b8;
+              color: #fff;
+              border: none;
+          }
+
+          .btn-register:hover {
+              background-color: #138496;
+              color: #fff;
+          }
+
+          main {
+              margin-top: 2rem;
+              margin-bottom: 2rem;
+          }
+          .navbar-custom {
+              font-size: 1.1rem;
+              padding-top: 0.8rem;
+              padding-bottom: 0.8rem;
+          }
+          .navbar-brand {
+              font-size: 1.5rem; /* Ajusta el tamaño de la fuente aquí */
+          }
+
+          .nav-link {
+              font-size: 1.3rem; /* Ajusta el tamaño de la fuente aquí */
+          }
+          .navbar {
+              padding-top: 0.30rem; /* Ajusta el padding superior aquí */
+              padding-bottom: 0.30rem; /* Ajusta el padding inferior aquí */
+          }
+    </style>
 </head>
-<body style="background-color: #e3fffc;">
-    <nav class="navbar navbar-expand-lg " style="background-color: #13547a;">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom" style="background-color: #13547a;">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">AI Blogs</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,39 +94,30 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'blog-page' %}">Home</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+                <a class="nav-link" aria-current="page" href="{% url 'home-page' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li> -->
+                <a class="nav-link" aria-current="page" href="{% url 'blog-page' %}">Pages</a>
+              </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form class="d-flex search-form" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success me-5" type="submit">Search</button>
+              <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
-            <a class="btn btn-outline-danger me-2" aria-current="page" href="{% url 'logout' %}">Logout</a>
-            <a class="btn btn-outline-info" aria-current="page" href="{% url 'profile-page' %}">Mi Perfil</a>
+            {% if user.is_authenticated %}
+              <a class="btn btn-login me-2" aria-current="page" href="{% url 'logout' %}">Logout</a>
+              <a class="btn btn-register" aria-current="page" href="{% url 'profile-page' %}">Mi Perfil</a>
+            {% else %}
+              <a class="btn btn-login me-2" aria-current="page" href="{% url 'login-page' %}">Login</a>
+              <a class="btn btn-register" aria-current="page" href="{% url 'register-page' %}">Registrarme</a>
+            {% endif %}
           </div>
         </div>
-      </nav>
+    </nav>
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
-    
 </body>
 </html>
+

@@ -15,7 +15,7 @@
     <header class="hero">
         <section class="hero-container">
             <figure class="hero-pic">
-                <img src="https://pbs.twimg.com/profile_images/1243623122089041920/gVZIvphd_400x400.jpg" alt="hero-img"
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/011/332/798/small/artificial-intelligence-ai-logo-human-technology-human-digital-robot-tech-icon-design-template-free-vector.jpg" alt="hero-img"
                     class="hero-img">
             </figure>
             <div class="hero-texts">
@@ -29,6 +29,8 @@
                 <!-- Contenido para usuarios no autenticados -->
                 <a href="{% url 'login-page' %}" class="hero-cta">Iniciar Sesión</a>
                 <a href="{% url 'register-page' %}" class="hero-cta">Registrarme</a>
+                <!-- Ver Blogs, pero sin modificar -->
+                <a href="{% url 'blog-page' %}" class="hero-cta">Ir al Blog</a>
                 {% endif %}
 
             </div>
