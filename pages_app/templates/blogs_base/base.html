@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1LdstHMFPco72XBf3E0VyTt8Mr0Gm/6s3/3t/3" crossorigin="anonymous">
+
     <title>AI Blogs</title>
     <style>
           body {
@@ -82,6 +84,12 @@
               padding-top: 0.30rem; /* Ajusta el padding superior aquí */
               padding-bottom: 0.30rem; /* Ajusta el padding inferior aquí */
           }
+          .welcome-message {
+              font-size: 1.1rem;
+              font-weight: bold;
+              color: #ffffff;
+              margin-right: 1rem;
+          }
     </style>
 </head>
 <body>
@@ -99,12 +107,12 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{% url 'blog-page' %}">Pages</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'about' %}">About</a>
+              </li>
             </ul>
-            <form class="d-flex search-form" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
             {% if user.is_authenticated %}
+              <span class="welcome-message">Bienvenido {{ user.username }}</span>
               <a class="btn btn-login me-2" aria-current="page" href="{% url 'logout' %}">Logout</a>
               <a class="btn btn-register" aria-current="page" href="{% url 'profile-page' %}">Mi Perfil</a>
             {% else %}
