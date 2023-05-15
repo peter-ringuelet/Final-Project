@@ -112,3 +112,21 @@ def profile(request: HttpRequest) -> HttpResponse:
 
 
     return render(request, TEMPLATES['profile'], {'form': form, 'success': f'Cambios guardados correctamente'})
+
+from django.contrib.auth.models import User
+from .forms import AvatarFormulario
+from .models import Avatar
+from django.shortcuts import redirect
+
+@login_required
+def agregarAvatar(request):
+      if request.method == 'POST':
+            miFormulario = AvatarFormulario(request.POST, request.FILES) #aquí mellega toda la información del html
+            if miFormulario.is_valid():   #Si pasó la validación de Django
+                  u = User.objects.get(username=request.user)
+                  avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen']) 
+                  avatar.save()
+                  return redirect('home-page') # Redirige al usuario a la página de inicio
+      else: 
+            miFormulario= AvatarFormulario() #Formulario vacio para construir el html
+      return render(request, "accounts/agregarAvatar.html", {"miFormulario":miFormulario})

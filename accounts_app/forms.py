@@ -86,3 +86,7 @@ class CustomUserEditForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'description',
                   'webpage', 'email', 'password1', 'password2')
         model = User
+
+class AvatarFormulario(forms.Form):
+    #Especificar los campos
+    imagen = forms.ImageField(required=True)

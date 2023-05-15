@@ -105,6 +105,34 @@
               height: auto;
               width: auto;
           }
+          .avatar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .avatar-container {
+                align-items: flex-start;
+            }
+        }
+        
+        .avatar {
+            height: 40px;
+        }
+        
+        .change-avatar-link {
+            display: block;
+            font-size: 0.8rem;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .change-avatar-link {
+                text-align: left;
+            }
+        }        
 
     </style>
 </head>
@@ -127,21 +155,24 @@
                 <a class="nav-link" aria-current="page" href="{% url 'about' %}">About</a>
               </li>
             </ul>
-              {% if user.is_authenticated %}
-                {% with avatares=request.user.avatar_set.all %}
-                    {% if avatares %}
-                        <img height="40px" src="{{avatares.0.imagen.url}}">
-                    {% else %}
-                        <img height="40px" src="/media/avatares/default.png">
-                    {% endif %}
-                    <span class="welcome-message">Bienvenido {{ user.username }}</span>
-                {% endwith %}
-              <a class="btn btn-login me-2" aria-current="page" href="{% url 'logout' %}">Logout</a>
-              <a class="btn btn-register" aria-current="page" href="{% url 'profile-page' %}">Mi Perfil</a>
-            {% else %}
-              <a class="btn btn-login me-2" aria-current="page" href="{% url 'login-page' %}">Login</a>
-              <a class="btn btn-register" aria-current="page" href="{% url 'register-page' %}">Registrarme</a>
-            {% endif %}
+            {% if user.is_authenticated %}
+            {% with avatares=request.user.avatar_set.all %}
+                {% if avatares %}
+                    <img height="40px" src="{{avatares.0.imagen.url}}">
+                {% else %}
+                    <div class="avatar-container">
+                        <img class="avatar" src="/media/avatares/default.png">
+                        <a class="small change-avatar-link" href="{% url 'AgregarAvatar' %}">Cambiar avatar</a>
+                    </div>
+                {% endif %}
+                <span class="welcome-message">Bienvenido {{ user.username }}</span>
+            {% endwith %}
+            <a class="btn btn-login me-2" aria-current="page" href="{% url 'logout' %}">Logout</a>
+            <a class="btn btn-register" aria-current="page" href="{% url 'profile-page' %}">Mi Perfil</a>
+        {% else %}
+            <a class="btn btn-login me-2" aria-current="page" href="{% url 'login-page' %}">Login</a>
+            <a class="btn btn-register" aria-current="page" href="{% url 'register-page' %}">Registrarme</a>
+        {% endif %}
           </div>
         </div>
     </nav>
