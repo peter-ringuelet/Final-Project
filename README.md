@@ -33,3 +33,4 @@ Python 3.10.4
 Django 5.0
 
 Video Demostración
+https://youtu.be/tyUiyTsc5ks
